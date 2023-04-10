@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "rails", ">= 6.0"
+  spec.add_development_dependency "standard", ">= 1.0"
 end
