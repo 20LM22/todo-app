@@ -20,6 +20,9 @@ yarn-debug.log*
 # Ignore simplecov coverage folder
 /coverage
 
+# Ignore the generated test app
+/.test_app
+
 Gemfile.lock
 *.gem
 *.DS_Store
