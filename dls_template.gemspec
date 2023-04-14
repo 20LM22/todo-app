@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative "lib/dls_template/version"
 
 Gem::Specification.new do |spec|
@@ -23,5 +21,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency "rails", ">= 6.0"
+
+  spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "rspec-rails", "~> 5.0"
   spec.add_development_dependency "standard", "~> 1.0"
 end
