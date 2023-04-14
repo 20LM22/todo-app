@@ -13,5 +13,9 @@ module DlsTemplate
     def rubocop
       copy_file ".rubocop.yml", ".rubocop.yml"
     end
+
+    def rspec
+      run "bin/rails generate rspec:install"
+    end
   end
 end
