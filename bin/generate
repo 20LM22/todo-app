@@ -1,4 +1,0 @@
-#!/usr/bin/env sh
-
-rm -rf .test_app/
-GEM_TEST=true rails new --no-rc  .test_app -m template.rb
