@@ -1,0 +1,3 @@
+--database=postgresql
+--skip-test
+--template=https://raw.githubusercontent.com/pulibrary/dls_template/main/template.rb
