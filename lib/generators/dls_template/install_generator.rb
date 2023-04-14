@@ -16,6 +16,12 @@ module DlsTemplate
 
     def rspec
       run "bin/rails generate rspec:install"
+      
+    def circle_ci
+      directory ".circleci", ".circleci"
+      inject_into_file "config/database.yml",
+        "  username: <%= ENV[\"lando_database_creds_user\"] || \"rails_template_user\" %>\n",
+        after: "database: db/test.sqlite3\n"
     end
   end
 end
