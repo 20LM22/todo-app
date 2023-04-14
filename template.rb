@@ -1,4 +1,8 @@
-gem "dls_template"
+if ENV["GEM_TEST"]
+  gem "dls_template", path: "../."
+else
+  gem "dls_template"
+end
 
 gem_group :development, :test do
   gem "bixby"
