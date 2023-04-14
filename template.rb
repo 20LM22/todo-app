@@ -1,5 +1,9 @@
 gem "dls_template"
 
+gem_group :development, :test do
+  gem "bixby"
+end
+
 run "bundle install"
 generate "dls_template:install", "-f"
 

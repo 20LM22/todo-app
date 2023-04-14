@@ -9,5 +9,9 @@ module DlsTemplate
     def asdf_tool_versions
       copy_file ".tool-versions", ".tool-versions"
     end
+
+    def rubocop
+      copy_file ".rubocop.yml", ".rubocop.yml"
+    end
   end
 end
