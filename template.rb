@@ -6,6 +6,8 @@ end
 
 gem_group :development, :test do
   gem "bixby"
+  gem "pry-byebug"
+  gem "pry-rails"
 end
 
 run "bundle install"
