@@ -6,14 +6,13 @@ orbs:
 commands:
   install_dependencies:
     steps:
-      - run: gem install bundler -v '2.2.14'
-      - run: cp Gemfile.lock Gemfile.lock.bak
+      - run: gem install bundler -v '2.3.18'
       - restore_cache:
           keys:
-            - dls_template-{{ checksum "Gemfile.lock.bak" }}
+            - dls_template-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path ./vendor/bundle
       - save_cache:
-          key: dls_template-{{ checksum "Gemfile.lock.bak" }}
+          key: dls_template-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
       - restore_cache:
@@ -27,7 +26,6 @@ commands:
           key: dls_template-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
-
 jobs:
   build:
     working_directory: ~/dls_template
@@ -43,7 +41,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '16.15'
+          node-version: '16.15.0'
       - run: sudo apt update && sudo apt install postgresql-client
       - install_dependencies
       - persist_to_workspace:

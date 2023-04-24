@@ -27,12 +27,9 @@ module DlsTemplate
     end
 
     def simplecov
-      inject_into_file ".circleci/config.yml",
-        "    - store_artifacts:\n      path: coverage\n",
-        after: "- run:\n name: Run Rspec\n command: bundle exec rspec"
       inject_into_file "spec/rails_helper.rb",
         "require \"spec_helper\"\nSimpleCov.start \"rails\"\n",
-        after: "require \"spec_helper\""
+        after: "require 'spec_helper'\n"
     end
   end
 end
