@@ -23,7 +23,7 @@ module DlsTemplate
       inject_into_file "config/database.yml",
         "  username: <%= ENV[\"lando_database_creds_user\"] || \"dls_template_user\" %>\n",
         after: "database: db/test.sqlite3\n"
-      gsub_file "lib/generators/dls_template/templates/.circleci/config.yml", "dls_template", Rails.application.class.to_s.gsub("::Application", "").underscore
+      gsub_file ".circleci/config.yml", "dls_template", Rails.application.class.to_s.gsub("::Application", "").underscore
     end
   end
 end
