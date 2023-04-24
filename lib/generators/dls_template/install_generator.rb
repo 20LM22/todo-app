@@ -35,7 +35,7 @@ module DlsTemplate
     def capistrano
       run "bundle exec cap install"
       inject_into_file "config/deploy.rb",
-        "# Default branch is :main\nset :branch, ENV[\"BRANCH\"] || \"main\"",
+        "\n# Default branch is :main\nset :branch, ENV[\"BRANCH\"] || \"main\"\n",
         after: "set :repo_url, \"git@example.com:me/my_repo.git\"\n"
     end
   end
