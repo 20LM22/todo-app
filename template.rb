@@ -15,6 +15,13 @@ gem_group :test do
   gem "simplecov", require: false
 end
 
+gem_group :development do
+  gem "capistrano"
+  gem "capistrano-passenger"
+  gem "capistrano-rails"
+  gem "capistrano-rails-console"
+end
+
 generate "dls_template:install", "-f"
 
 # Remove unneeded dls_template gem from Gemfile.
