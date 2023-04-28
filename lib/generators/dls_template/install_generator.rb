@@ -38,5 +38,12 @@ module DlsTemplate
         "\n# Default branch is :main\nset :branch, ENV[\"BRANCH\"] || \"main\"\n",
         after: "set :repo_url, \"git@example.com:me/my_repo.git\"\n"
     end
+
+    def axe
+      inject_into_file "spec/rails_helper.rb", "require 'axe-rspec'\n", after: "require 'spec_helper'\n"
+      gsub_file "app/views/layouts/application.html.erb", "<html>", "<html lang=\"en\">"
+      run "mkdir ./spec/features"
+      copy_file "accessibility_spec.rb", "./spec/features/accessibility_spec.rb"
+    end
   end
 end
