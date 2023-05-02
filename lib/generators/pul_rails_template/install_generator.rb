@@ -28,7 +28,7 @@ module PulRailsTemplate
 
     def simplecov
       inject_into_file "spec/rails_helper.rb",
-        "require \"spec_helper\"\nSimpleCov.start \"rails\"\n",
+        "require \"simplecov\"\nSimpleCov.start \"rails\"\n",
         after: "require 'spec_helper'\n"
     end
 
