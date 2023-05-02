@@ -13,6 +13,7 @@ end
 
 gem_group :test do
   gem "simplecov", require: false
+  gem "axe-core-rspec"
 end
 
 gem_group :development do
