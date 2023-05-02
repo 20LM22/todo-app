@@ -1,8 +1,8 @@
-require_relative "lib/dls_template/version"
+require_relative "lib/pul_rails_template/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "dls_template"
-  spec.version = DlsTemplate::VERSION
+  spec.name = "pul_rails_template"
+  spec.version = PulRailsTemplate::VERSION
   spec.authors = ["Eliot Jordan", "Taylor Yamashita"]
 
   spec.summary = "Template for generating new DLS Rails applications."

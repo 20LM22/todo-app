@@ -1,7 +1,7 @@
 if ENV["GEM_TEST"]
-  gem "dls_template", path: "../."
+  gem "pul_rails_template", path: "../."
 else
-  gem "dls_template"
+  gem "pul_rails_template"
 end
 
 gem_group :development, :test do
@@ -23,11 +23,11 @@ gem_group :development do
   gem "capistrano-rails-console"
 end
 
-generate "dls_template:install", "-f"
+generate "pul_rails_template:install", "-f"
 
-# Remove unneeded dls_template gem from Gemfile.
+# Remove unneeded pul_rails_template gem from Gemfile.
 gemfile = File.expand_path("Gemfile")
 File.write(gemfile, File.open(gemfile) do |f|
                       text = f.read
-                      text.gsub(/^gem "dls_template".*$/, "")
+                      text.gsub(/^gem "pul_rails_template".*$/, "")
                     end)

@@ -9,26 +9,26 @@ commands:
       - run: gem install bundler -v '2.3.18'
       - restore_cache:
           keys:
-            - dls_template-{{ checksum "Gemfile.lock" }}
+            - pul_rails_template-{{ checksum "Gemfile.lock" }}
       - run: bundle install --path ./vendor/bundle
       - save_cache:
-          key: dls_template-{{ checksum "Gemfile.lock" }}
+          key: pul_rails_template-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
       - restore_cache:
           name: Restore Yarn Package Cache
-          key: dls_template-yarn-{{ checksum "yarn.lock" }}
+          key: pul_rails_template-yarn-{{ checksum "yarn.lock" }}
       - run:
           name: Install NPM Dependencies via Yarn
           command: yarn install --frozen-lockfile
       - save_cache:
           name: Save Yarn Package Cache
-          key: dls_template-yarn-{{ checksum "yarn.lock" }}
+          key: pul_rails_template-yarn-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
 jobs:
   build:
-    working_directory: ~/dls_template
+    working_directory: ~/pul_rails_template
     docker:
       - image: cimg/ruby:3.1.0-browsers
         environment:
@@ -45,38 +45,38 @@ jobs:
       - run: sudo apt update && sudo apt install postgresql-client
       - install_dependencies
       - persist_to_workspace:
-          root: '~/dls_template'
+          root: '~/pul_rails_template'
           paths: '*'
 
   rubocop:
-    working_directory: ~/dls_template
+    working_directory: ~/pul_rails_template
     docker:
       - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
     steps:
       - attach_workspace:
-          at: '~/dls_template'
+          at: '~/pul_rails_template'
       - install_dependencies
       - run:
           name: Run rubocop
           command: bundle exec rubocop
 
   test:
-    working_directory: ~/dls_template
+    working_directory: ~/pul_rails_template
     docker:
       - image: cimg/ruby:3.1.0-browsers
         environment:
           RAILS_ENV: test
       - image: postgres:10.6-alpine
         environment:
-          POSTGRES_USER: dls_template_user
+          POSTGRES_USER: pul_rails_template_user
           POSTGRES_DB: test_db
           POSTGRES_HOST_AUTH_METHOD: trust
     steps:
       - browser-tools/install-browser-tools
       - attach_workspace:
-          at: '~/dls_template'
+          at: '~/pul_rails_template'
       - install_dependencies
       - run:
           name: Wait for PostgreSQL
