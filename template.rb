@@ -11,6 +11,10 @@ gem_group :development, :test do
   gem "rspec-rails", "~> 5.0.0"
 end
 
+gem_group :test do
+  gem "simplecov", require: false
+end
+
 generate "dls_template:install", "-f"
 
 # Remove unneeded dls_template gem from Gemfile.

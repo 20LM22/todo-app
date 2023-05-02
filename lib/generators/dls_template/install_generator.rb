@@ -25,5 +25,11 @@ module DlsTemplate
         after: "database: db/test.sqlite3\n"
       gsub_file ".circleci/config.yml", "dls_template", Rails.application.class.to_s.gsub("::Application", "").underscore
     end
+
+    def simplecov
+      inject_into_file "spec/rails_helper.rb",
+        "require \"spec_helper\"\nSimpleCov.start \"rails\"\n",
+        after: "require 'spec_helper'\n"
+    end
   end
 end
