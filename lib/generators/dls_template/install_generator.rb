@@ -31,5 +31,12 @@ module DlsTemplate
         "require \"spec_helper\"\nSimpleCov.start \"rails\"\n",
         after: "require 'spec_helper'\n"
     end
+
+    def capistrano
+      run "bundle exec cap install"
+      inject_into_file "config/deploy.rb",
+        "\n# Default branch is :main\nset :branch, ENV[\"BRANCH\"] || \"main\"\n",
+        after: "set :repo_url, \"git@example.com:me/my_repo.git\"\n"
+    end
   end
 end
