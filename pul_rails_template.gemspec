@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_runtime_dependency "rails", ">= 6.0"
+  spec.add_runtime_dependency "rails", ">= 7.0"
 
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "rspec-rails", "~> 5.0"
