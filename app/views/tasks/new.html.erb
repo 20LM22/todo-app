@@ -1,0 +1,19 @@
+<h1>To-do List</h1>
+
+<% @tasks.each do |task| %>
+    <span>
+        <input type="radio" id="${task.id}" class="checked">
+        <label for="${task.id}"><%= task.task_description %>
+        <input type="Submit" value="X">
+        <br>
+    </span>
+<% end %>
+
+<%= form_for(@task) do |f| %>
+    <%= f.text_field :task_description %>
+    <%= f.submit %>
+<% end %>
+
+<span>
+<%= link_to 'Cancel', root_path %>
+</span>

@@ -1,0 +1,15 @@
+<h1>To-do List</h1>
+
+<% @tasks.each do |task| %>
+    <span>
+        <input type="radio" id="${task.id}" class="checked">
+        <label for="${task.id}"><%= task.task_description %>
+        <input type="Submit" value="X">
+        <br>
+    </span>
+<% end %>
+
+<span>
+<%= link_to 'New Task', new_task_path %>
+<input type="Submit" value="Save">
+</span>
