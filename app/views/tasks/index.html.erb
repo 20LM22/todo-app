@@ -2,10 +2,14 @@
 
 <h1>To-do List</h1>
 
+<%= form_with url: "/tasks/save", method: :patch do |form| %>
+
 <div class="all-tasks container">
 <% @tasks.each do |task| %>
     <div class="wrapper">
-        <input type="checkbox" id=task-<%= task.id %> value=<%= task.checked%> class="checked">
+        <p>Task checked: <%= task.checked %></p>
+        <%= form.check_box("tasks[]", {checked: task.checked}, 'c' + task.id.to_s, 'n' + task.id.to_s) %>
+
         <label id=label-task-<%= task.id %> for=task-<%= task.id %>><%= task.task_description %></label>
         <%= link_to 'delete', task, data: {
             turbo_method: :delete,
@@ -17,11 +21,12 @@
 <div class="bottom-wrapper">
 
 <%= link_to 'New Task', new_task_path, class: "button" %>
-<input id="save" type="Submit" value="Save">
+<%= form.submit "Save All", class: "button" %>
 </div>
 
 </div>
+<% end %>
 
 <footer class="bg-info text-center text-lg-start fixed-bottom">
-    <p>Last Updated: 07/01/24</p>
+    <p>Last Updated: 07/02/24</p>
 </footer>

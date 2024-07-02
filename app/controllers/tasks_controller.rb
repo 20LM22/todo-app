@@ -19,6 +19,7 @@ class TasksController < ApplicationController
   def create
     task_params = params.require(:task).permit(:checked, :task_description)
     @task = Task.new(task_params) 
+    @task.checked = false;
     @task.save
     redirect_to root_path
   end
@@ -34,6 +35,26 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     redirect_back(fallback_location: root_path)
+  end
+
+  def save
+    tasks = params[:tasks]
+
+    tasks.each do |task|
+      task_status_update = task[0,1]
+      task_id = task[1..-1]
+      task = Task.find(task_id.to_i)
+
+      if task_status_update == 'c'
+        task.update(checked: true)
+      else
+        task.update(checked: false)
+      end
+
+    end
+
+    redirect_to root_path
+
   end
 
 end
