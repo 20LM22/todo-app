@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id]) 
+    @tasks = Task.all
   end
 
   def new
@@ -26,13 +26,14 @@ class TasksController < ApplicationController
   def update 
     @task = Task.find(params[:id])
     task_params = params.require(:task).permit(:checked, :task_description)
-    @task.update(tasks_params) 
+    @task.update(task_params) 
     redirect_to @task  
   end
 
   def destroy 
     @task = Task.find(params[:id])
     @task.destroy
+    redirect_back(fallback_location: root_path)
   end
 
 end

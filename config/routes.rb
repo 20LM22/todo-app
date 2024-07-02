@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root "tasks#index"
+  delete "tasks/:id", to: "tasks#destroy"
   resources :tasks
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

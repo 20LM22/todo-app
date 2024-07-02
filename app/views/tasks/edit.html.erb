@@ -1,0 +1,21 @@
+<h1>To-do List</h1>
+
+<% @tasks.each do |task| %>
+    <span>
+        <input type="checkbox" id=task-<%= task.id %> >
+        <label for=task-<%= task.id %>><%= task.task_description %>
+        <%= link_to 'delete', task, data: {
+            turbo_method: :delete,
+        } %>
+        <br>
+    </span>
+<% end %>
+
+<%= form_for(@task) do |f| %>
+    <%= f.text_field :task_description %>
+    <%= f.submit %>
+<% end %>
+
+<span>
+<%= link_to 'Cancel', root_path %>
+</span>

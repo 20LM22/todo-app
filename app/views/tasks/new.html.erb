@@ -1,19 +1,31 @@
+<div id="outer-wrapper" class="mb-2 bg-info-subtle text-info-emphasis">
+
 <h1>To-do List</h1>
 
+<div class="all-tasks container">
 <% @tasks.each do |task| %>
-    <span>
-        <input type="radio" id="${task.id}" class="checked">
-        <label for="${task.id}"><%= task.task_description %>
-        <input type="Submit" value="X">
-        <br>
-    </span>
+    <div class="wrapper">
+        <%= check_box_tag 'olo', '1', task.checked %>
+        <label for=task-<%= task.id %>><%= task.task_description %></label>
+        <%= link_to 'delete', task, data: {
+            turbo_method: :delete,
+        }, class: "delete-link" %>
+    </div>
 <% end %>
 
 <%= form_for(@task) do |f| %>
-    <%= f.text_field :task_description %>
-    <%= f.submit %>
+    <%= f.text_field :task_description, class: "new-task" %>
+    <%= f.submit class: "button" %>
 <% end %>
 
-<span>
-<%= link_to 'Cancel', root_path %>
-</span>
+</div>
+
+<div class="bottom-wrapper">
+<%= link_to 'Cancel', root_path, class: "button" %>
+</div>
+
+</div>
+
+<footer class="bg-info text-center text-lg-start fixed-bottom">
+    <p>Last Updated: 07/01/24</p>
+</footer>

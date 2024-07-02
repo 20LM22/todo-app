@@ -5,8 +5,8 @@
 <div class="all-tasks container">
 <% @tasks.each do |task| %>
     <div class="wrapper">
-        <input type="checkbox" id=task-<%= task.id %> value=<%= task.checked%> class="checked">
-        <label id=label-task-<%= task.id %> for=task-<%= task.id %>><%= task.task_description %></label>
+        <%= check_box_tag 'olo', '1', task.checked %>
+        <label for=task-<%= task.id %>><%= task.task_description %></label>
         <%= link_to 'delete', task, data: {
             turbo_method: :delete,
         }, class: "delete-link" %>
