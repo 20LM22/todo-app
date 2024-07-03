@@ -13,6 +13,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @tasks = Task.all
     @task = Task.find(params[:id])
   end
 
@@ -28,7 +29,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     task_params = params.require(:task).permit(:checked, :task_description)
     @task.update(task_params) 
-    redirect_to @task  
+    redirect_to root_path 
   end
 
   def destroy 

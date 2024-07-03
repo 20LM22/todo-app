@@ -1,21 +1,40 @@
+<div id="outer-wrapper" class="mb-2 bg-info-subtle text-info-emphasis">
+
 <h1>To-do List</h1>
 
+<div class="all-tasks container">
 <% @tasks.each do |task| %>
-    <span>
-        <input type="checkbox" id=task-<%= task.id %> >
-        <label for=task-<%= task.id %>><%= task.task_description %>
-        <%= link_to 'delete', task, data: {
-            turbo_method: :delete,
-        } %>
-        <br>
-    </span>
+    <div class="wrapper">
+
+        <%= check_box_tag task.id, "val", task.checked, class: "checkbox", disabled: true %>
+        
+        <% if @task == task %>
+            <%= form_for(@task) do |f| %>
+                <%= f.text_field :task_description, class: "new-task" %>
+                <%= f.submit class: "button" %>
+            <% end %>
+        <% else %>
+            <label id=label-<%= task.id %> for=<%= task.id %>><%= task.task_description %></label>
+        <% end %>
+
+        <% if @task == task %>
+            <%= link_to 'cancel', root_path, class: "button" %>
+        <% else %>
+            <%= link_to 'delete', task, data: {
+                turbo_method: :delete,
+                }, class: "delete-link"  %>
+            <%= link_to 'edit', edit_task_path(task), class: "edit-link" %>
+        <% end %>
+
+    </div>
 <% end %>
 
-<%= form_for(@task) do |f| %>
-    <%= f.text_field :task_description %>
-    <%= f.submit %>
-<% end %>
+</div>
 
-<span>
-<%= link_to 'Cancel', root_path %>
-</span>
+</div>
+
+<footer class="bg-info text-center text-lg-start fixed-bottom">
+    <p>Last Updated: 07/03/24</p>
+</footer>
+
+<%= javascript_include_tag 'onload.js', 'data-turbo-track': 'reload', defer: true %>

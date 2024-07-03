@@ -55,11 +55,11 @@ h1 {
     padding-bottom: 15px;
 }
 
-#olo, label, .delete-link {
+.checkbox, label, .delete-link {
     display: inline;
 }
 
-#olo {
+.checkbox {
     width: 5%;
 }
 

@@ -7,26 +7,33 @@
 <div class="all-tasks container">
 <% @tasks.each do |task| %>
     <div class="wrapper">
-        <p>Task checked: <%= task.checked %></p>
-        <%= form.check_box("tasks[]", {checked: task.checked}, 'c' + task.id.to_s, 'n' + task.id.to_s) %>
-
-        <label id=label-task-<%= task.id %> for=task-<%= task.id %>><%= task.task_description %></label>
+        
+        <%= form.check_box("tasks[]", {checked: task.checked, class: "checkbox", id: task.id }, 'c' + task.id.to_s, 'n' + task.id.to_s) %>
+        <label id=label-<%= task.id %> for=<%= task.id %> class="strike"><%= task.task_description %></label>
+       
         <%= link_to 'delete', task, data: {
             turbo_method: :delete,
         }, class: "delete-link" %>
+
+        <%= link_to 'edit', edit_task_path(task), class: "edit-link" %>
+
     </div>
 <% end %>
+
 </div>
 
 <div class="bottom-wrapper">
 
 <%= link_to 'New Task', new_task_path, class: "button" %>
-<%= form.submit "Save All", class: "button" %>
+<%= form.submit "Save Selections", class: "button" %>
 </div>
 
 </div>
 <% end %>
 
 <footer class="bg-info text-center text-lg-start fixed-bottom">
-    <p>Last Updated: 07/02/24</p>
+    <p>Last Updated: 07/03/24</p>
 </footer>
+
+<%= javascript_include_tag 'onload.js', 'data-turbo-track': 'reload', defer: true %>
+<%= javascript_include_tag 'index.js', 'data-turbo-track': 'reload', defer: true %>
